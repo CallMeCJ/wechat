@@ -2,11 +2,14 @@ package com.cjzheng.wechat.service;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.cjzheng.wechat.model.AccessTokenModel;
 import com.cjzheng.wechat.model.CheckModel;
 import com.cjzheng.wechat.util.EncoderHandler;
+import com.cjzheng.wechat.util.HttpClientUtil;
+import com.cjzheng.wechat.util.JsonMapper;
 
 /**
  * @date: 2016年6月26日下午12:17:18
@@ -47,5 +50,32 @@ public class TokenService {
 			}
 		}
 		return "error";
+	}
+
+	/**
+	 * 获取全局返回码
+	 *
+	 * @param appid
+	 *            微信appid
+	 * @param secret
+	 *            微信secret
+	 * @return
+	 * @throws Exception
+	 */
+	public String getAccessToken(String appid, String secret) {
+		if (StringUtils.isEmpty(appid) || StringUtils.isEmpty(secret))
+			return "请输入appid或appsecret";
+		String accessToken = "";
+		String accessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token";
+		AccessTokenModel accessTokenModel = JsonMapper.buildNormalMapper()
+				.fromJson(HttpClientUtil.sendGetSSLRequest(
+						accessTokenUrl + "?grant_type=client_credential&appid=" + appid + "&secret=" + secret, null),
+				AccessTokenModel.class);
+		if (StringUtils.isEmpty(accessTokenModel.getAccess_token())) {
+			return null;
+		} else {
+			accessToken = accessTokenModel.getAccess_token();
+		}
+		return accessToken;
 	}
 }
