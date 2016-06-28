@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function getAccessToken(){
 		$.ajax({
-			url : 'test/getAccessToken',
+			url : 'wechat/test/getAccessToken',
 			data:{
 				appid:$('#appid').val(),
 				secret:$('#secret').val()

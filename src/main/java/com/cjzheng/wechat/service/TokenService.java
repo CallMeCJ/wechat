@@ -2,7 +2,7 @@ package com.cjzheng.wechat.service;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.cjzheng.wechat.model.AccessTokenModel;
@@ -19,6 +19,7 @@ import com.cjzheng.wechat.util.JsonMapper;
 
 @Service
 public class TokenService {
+	private static String wxToken = "cjwithsn";
 
 	/**
 	 * 微信开发者验证
@@ -32,10 +33,10 @@ public class TokenService {
 	 * @return
 	 */
 	@Transactional
-	public String validate(String wxToken, CheckModel tokenModel) {
+	public String validate(CheckModel tokenModel) {
 		String signature = tokenModel.getSignature();
-		Long timestamp = tokenModel.getTimestamp();
-		Long nonce = tokenModel.getNonce();
+		String timestamp = tokenModel.getTimestamp();
+		String nonce = tokenModel.getNonce();
 		String echostr = tokenModel.getEchostr();
 		if (signature != null && timestamp != null & nonce != null) {
 			String[] str = { wxToken, timestamp + "", nonce + "" };

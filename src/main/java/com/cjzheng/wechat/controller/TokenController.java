@@ -33,10 +33,10 @@ public class TokenController {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/check/{wxToken}", method = RequestMethod.GET, produces = "text/plain")
+	@RequestMapping(value = "/check", method = RequestMethod.GET, produces = "text/plain")
 	public @ResponseBody String validate(@PathVariable("wxToken") String wxToken, CheckModel tokenModel)
 			throws ParseException, IOException {
-		return tokenService.validate(wxToken, tokenModel);
+		return tokenService.validate(tokenModel);
 	}
 
 }

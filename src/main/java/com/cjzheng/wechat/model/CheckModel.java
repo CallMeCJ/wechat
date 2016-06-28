@@ -8,8 +8,8 @@ package com.cjzheng.wechat.model;
 
 public class CheckModel extends ErrorCodeModel {
 	String signature;
-	Long timestamp;
-	Long nonce;
+	String timestamp;
+	String nonce;
 	String echostr;
 
 	public String getSignature() {
@@ -20,19 +20,19 @@ public class CheckModel extends ErrorCodeModel {
 		this.signature = signature;
 	}
 
-	public Long getTimestamp() {
+	public String getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Long timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public Long getNonce() {
+	public String getNonce() {
 		return nonce;
 	}
 
-	public void setNonce(Long nonce) {
+	public void setNonce(String nonce) {
 		this.nonce = nonce;
 	}
 
