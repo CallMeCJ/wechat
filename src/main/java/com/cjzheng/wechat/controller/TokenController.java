@@ -69,7 +69,7 @@ public class TokenController {
 
 		// 调用核心业务类接收消息、处理消息
 		String respMessage = coreService.processRequest(request);
-
+		System.out.println("得到的结果" + respMessage);
 		return respMessage;
 	}
 

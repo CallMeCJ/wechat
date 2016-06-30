@@ -159,7 +159,6 @@ public class CoreService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return respMessage;
 	}
 }
