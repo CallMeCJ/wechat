@@ -1,9 +1,11 @@
 package com.cjzheng.wechat.model;
 
 /**
- * @date: 2016年6月26日下午12:29:37
+ * 
+ * @Description: 微信token
  * @author: zhengchaojie
- * @version: v1.0
+ * @date 2016年6月30日 下午3:17:19
+ *
  */
 
 public class AccessTokenModel extends ErrorCodeModel {

@@ -3,40 +3,74 @@ package com.cjzheng.wechat.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.cjzheng.wechat.model.CheckModel;
-import com.cjzheng.wechat.service.TokenService;
+import com.cjzheng.wechat.service.CoreService;
 
 /**
- * @date: 2016年6月26日下午12:13:57
+ * 
+ * @Description: api请求入口
  * @author: zhengchaojie
- * @version: v1.0
+ * @date 2016年6月30日 下午3:15:48
+ *
  */
 @Controller
 @RequestMapping("/wechat")
 public class TokenController {
 
 	@Resource
-	private TokenService tokenService;
+	private CoreService coreService;
 
 	/**
-	 * 开发者模式token校验
-	 *
-	 * @param wxAccount
-	 *            开发者url后缀
-	 * @param response
+	 * 
+	 * @Title: TokenController
+	 * @Description: 开发者模式token校验
 	 * @param tokenModel
+	 *            微信验证token
+	 * @return String
 	 * @throws ParseException
 	 * @throws IOException
+	 * 
+	 * @Date: 2016年6月30日
+	 * @author:zhengchaojie
 	 */
-	@RequestMapping(value = "/check", method = RequestMethod.GET, produces = "text/plain")
-	public @ResponseBody String validate(@PathVariable("wxToken") String wxToken, CheckModel tokenModel)
-			throws ParseException, IOException {
-		return tokenService.validate(tokenModel);
+	@RequestMapping(value = "/api", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String validate(CheckModel tokenModel) throws ParseException, IOException {
+		return coreService.validate(tokenModel);
+	}
+
+	/**
+	 * 
+	 * @Title: TokenController
+	 * @Description: 微信其他接口的实现
+	 * @param request
+	 * @param response
+	 * @return string
+	 * @throws ServletException
+	 * @throws IOException
+	 * @Date: 2016年6月30日
+	 * @author:zhengchaojie
+	 */
+
+	@RequestMapping(value = "/api", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String wechatPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 将请求、响应的编码均设置为UTF-8（防止中文乱码）
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		// 调用核心业务类接收消息、处理消息
+		String respMessage = coreService.processRequest(request);
+
+		return respMessage;
 	}
 
 }

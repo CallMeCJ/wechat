@@ -1,7 +1,6 @@
 package com.cjzheng.wechat.util;
 
 import java.io.IOException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -12,6 +11,14 @@ import org.codehaus.jackson.map.util.JSONPObject;
 import org.codehaus.jackson.type.JavaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+/**
+ * 
+ * @Description: TODO
+ * @author: zhengchaojie
+ * @date 2016年6月30日 下午3:15:09
+ *
+ */
 
 public class JsonMapper {
 	private static Logger logger = LoggerFactory.getLogger(JsonMapper.class);

@@ -1,9 +1,11 @@
 package com.cjzheng.wechat.model;
 
 /**
- * @date: 2016年6月26日下午12:12:05
+ * 
+ * @Description: 微信验证字段
  * @author: zhengchaojie
- * @version: v1.0
+ * @date 2016年6月30日 下午3:17:36
+ *
  */
 
 public class CheckModel extends ErrorCodeModel {

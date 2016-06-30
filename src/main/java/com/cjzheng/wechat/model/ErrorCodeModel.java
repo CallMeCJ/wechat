@@ -1,9 +1,11 @@
 package com.cjzheng.wechat.model;
 
 /**
- * @date: 2016年6月26日下午12:11:07
+ * 
+ * @Description: 微信错误代码
  * @author: zhengchaojie
- * @version: v1.0
+ * @date 2016年6月30日 下午3:18:01
+ *
  */
 
 public class ErrorCodeModel {
