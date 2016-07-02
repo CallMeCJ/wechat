@@ -10,43 +10,43 @@ package com.cjzheng.wechat.model.messgae.response;
 
 public class Music {
 	// 音乐名称
-	private String title;
+	private String Title;
 	// 音乐描述
-	private String description;
+	private String Description;
 	// 音乐链接
-	private String musicUrl;
+	private String MusicUrl;
 	// 高质量音乐链接，WIFI环境优先使用该链接播放音乐
-	private String hQMusicUrl;
+	private String HQMusicUrl;
 
 	public String getTitle() {
-		return title;
+		return Title;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		Title = title;
 	}
 
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		Description = description;
 	}
 
 	public String getMusicUrl() {
-		return musicUrl;
+		return MusicUrl;
 	}
 
 	public void setMusicUrl(String musicUrl) {
-		this.musicUrl = musicUrl;
+		MusicUrl = musicUrl;
 	}
 
-	public String gethQMusicUrl() {
-		return hQMusicUrl;
+	public String getHQMusicUrl() {
+		return HQMusicUrl;
 	}
 
-	public void sethQMusicUrl(String hQMusicUrl) {
-		this.hQMusicUrl = hQMusicUrl;
+	public void setHQMusicUrl(String hQMusicUrl) {
+		HQMusicUrl = hQMusicUrl;
 	}
 }

@@ -10,13 +10,13 @@ package com.cjzheng.wechat.model.messgae.response;
 
 public class MusicMessage extends BaseMessage {
 	// 音乐
-	private Music music;
+	private Music Music;
 
 	/**
 	 * @return the music
 	 */
 	public Music getMusic() {
-		return music;
+		return Music;
 	}
 
 	/**
@@ -24,6 +24,6 @@ public class MusicMessage extends BaseMessage {
 	 *            the music to set
 	 */
 	public void setMusic(Music music) {
-		this.music = music;
+		Music = music;
 	}
 }

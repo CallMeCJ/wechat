@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +24,9 @@ import com.cjzheng.wechat.service.CoreService;
  */
 @Controller
 @RequestMapping("/wechat")
-public class TokenController {
+public class WeChatController {
+
+	private static Logger logger = Logger.getLogger(WeChatController.class);
 
 	@Resource
 	private CoreService coreService;
@@ -43,6 +47,8 @@ public class TokenController {
 	@RequestMapping(value = "/api", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String validate(CheckModel tokenModel) throws ParseException, IOException {
+		logger.info("get");
+		System.out.println("get");
 		return coreService.validate(tokenModel);
 	}
 
@@ -66,6 +72,7 @@ public class TokenController {
 		// 将请求、响应的编码均设置为UTF-8（防止中文乱码）
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		System.out.println("走到这咯");
 
 		// 调用核心业务类接收消息、处理消息
 		String respMessage = coreService.processRequest(request);

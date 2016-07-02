@@ -10,24 +10,23 @@ package com.cjzheng.wechat.model.messgae.request;
 
 public class VoiceMessage extends BaseMessage {
 	// 媒体ID
-	private String mediaId;
+	private String MediaId;
 	// 语音格式
-	private String format;
+	private String Format;
 
 	public String getMediaId() {
-		return mediaId;
+		return MediaId;
 	}
 
 	public void setMediaId(String mediaId) {
-		this.mediaId = mediaId;
+		MediaId = mediaId;
 	}
 
 	public String getFormat() {
-		return format;
+		return Format;
 	}
 
 	public void setFormat(String format) {
-		this.format = format;
+		Format = format;
 	}
-
 }

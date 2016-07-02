@@ -10,43 +10,43 @@ package com.cjzheng.wechat.model.messgae.request;
 
 public class LocationMessage extends BaseMessage {
 	// 地理位置维度
-	private String locationX;
+	private String Location_X;
 	// 地理位置经度
-	private String locationY;
+	private String Location_Y;
 	// 地图缩放大小
-	private String scale;
+	private String Scale;
 	// 地理位置信息
-	private String label;
+	private String Label;
 
-	public String getLocationX() {
-		return locationX;
+	public String getLocation_X() {
+		return Location_X;
 	}
 
-	public void setLocationX(String locationX) {
-		this.locationX = locationX;
+	public void setLocation_X(String location_X) {
+		Location_X = location_X;
 	}
 
-	public String getLocationY() {
-		return locationY;
+	public String getLocation_Y() {
+		return Location_Y;
 	}
 
-	public void setLocationY(String locationY) {
-		this.locationY = locationY;
+	public void setLocation_Y(String location_Y) {
+		Location_Y = location_Y;
 	}
 
 	public String getScale() {
-		return scale;
+		return Scale;
 	}
 
 	public void setScale(String scale) {
-		this.scale = scale;
+		Scale = scale;
 	}
 
 	public String getLabel() {
-		return label;
+		return Label;
 	}
 
 	public void setLabel(String label) {
-		this.label = label;
+		Label = label;
 	}
 }

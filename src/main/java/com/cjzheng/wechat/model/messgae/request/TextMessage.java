@@ -10,13 +10,13 @@ package com.cjzheng.wechat.model.messgae.request;
 
 public class TextMessage extends BaseMessage {
 	// 消息内容
-	private String content;
+	private String Content;
 
 	/**
 	 * @return the content
 	 */
 	public String getContent() {
-		return content;
+		return Content;
 	}
 
 	/**
@@ -24,7 +24,7 @@ public class TextMessage extends BaseMessage {
 	 *            the content to set
 	 */
 	public void setContent(String content) {
-		this.content = content;
+		Content = content;
 	}
 
 }

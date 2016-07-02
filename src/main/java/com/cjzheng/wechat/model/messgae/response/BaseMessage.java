@@ -2,62 +2,61 @@ package com.cjzheng.wechat.model.messgae.response;
 
 /**
  * 
-* @Description: 响应消息的基类
-* @author: zhengchaojie
-* @date 2016年6月30日 下午3:22:12 
-*
+ * @Description: 响应消息的基类
+ * @author: zhengchaojie
+ * @date 2016年6月30日 下午3:22:12
+ *
  */
 
 public class BaseMessage {
 	// 接收方帐号（收到的OpenID）
-	private String toUserName;
+	private String ToUserName;
 	// 开发者微信号
-	private String fromUserName;
+	private String FromUserName;
 	// 消息创建时间 （整型）
-	private long createTime;
+	private long CreateTime;
 	// 消息类型（text/music/news）
-	private String msgType;
+	private String MsgType;
 	// 位0x0001被标志时，星标刚收到的消息
-	private int funcFlag;
+	private int FuncFlag;
 
 	public String getToUserName() {
-		return toUserName;
+		return ToUserName;
 	}
 
 	public void setToUserName(String toUserName) {
-		this.toUserName = toUserName;
+		ToUserName = toUserName;
 	}
 
 	public String getFromUserName() {
-		return fromUserName;
+		return FromUserName;
 	}
 
 	public void setFromUserName(String fromUserName) {
-		this.fromUserName = fromUserName;
+		FromUserName = fromUserName;
 	}
 
 	public long getCreateTime() {
-		return createTime;
+		return CreateTime;
 	}
 
 	public void setCreateTime(long createTime) {
-		this.createTime = createTime;
+		CreateTime = createTime;
 	}
 
 	public String getMsgType() {
-		return msgType;
+		return MsgType;
 	}
 
 	public void setMsgType(String msgType) {
-		this.msgType = msgType;
+		MsgType = msgType;
 	}
 
 	public int getFuncFlag() {
-		return funcFlag;
+		return FuncFlag;
 	}
 
 	public void setFuncFlag(int funcFlag) {
-		this.funcFlag = funcFlag;
+		FuncFlag = funcFlag;
 	}
-
 }

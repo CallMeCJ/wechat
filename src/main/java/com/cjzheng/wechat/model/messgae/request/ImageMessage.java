@@ -10,13 +10,13 @@ package com.cjzheng.wechat.model.messgae.request;
 
 public class ImageMessage extends BaseMessage {
 	// 图片链接
-	private String picUrl;
+	private String PicUrl;
 
 	/**
 	 * @return the picUrl
 	 */
 	public String getPicUrl() {
-		return picUrl;
+		return PicUrl;
 	}
 
 	/**
@@ -24,7 +24,7 @@ public class ImageMessage extends BaseMessage {
 	 *            the picUrl to set
 	 */
 	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
+		PicUrl = picUrl;
 	}
 
 }

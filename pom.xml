@@ -144,9 +144,13 @@
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
-			<scope>provided</scope>
+			<exclusions>  
+                <exclusion>  
+                    <groupId>xml-apis</groupId>  
+                    <artifactId>xml-apis</artifactId>  
+                </exclusion>  
+            </exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
