@@ -1,20 +1,18 @@
 package com.cjzheng.wechat.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.cjzheng.wechat.model.AccessTokenModel;
 import com.cjzheng.wechat.model.CheckModel;
+import com.cjzheng.wechat.model.messgae.response.Article;
+import com.cjzheng.wechat.model.messgae.response.NewsMessage;
 import com.cjzheng.wechat.model.messgae.response.TextMessage;
 import com.cjzheng.wechat.util.EncoderHandler;
-import com.cjzheng.wechat.util.HttpClientUtil;
-import com.cjzheng.wechat.util.JsonMapper;
 import com.cjzheng.wechat.util.MessageUtil;
 
 /**
@@ -60,33 +58,6 @@ public class CoreService {
 	}
 
 	/**
-	 * 获取全局返回码
-	 *
-	 * @param appid
-	 *            微信appid
-	 * @param secret
-	 *            微信secret
-	 * @return
-	 * @throws Exception
-	 */
-	public String getAccessToken(String appid, String secret) {
-		if (StringUtils.isEmpty(appid) || StringUtils.isEmpty(secret))
-			return "请输入appid或appsecret";
-		String accessToken = "";
-		String accessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token";
-		AccessTokenModel accessTokenModel = JsonMapper.buildNormalMapper()
-				.fromJson(HttpClientUtil.sendGetSSLRequest(
-						accessTokenUrl + "?grant_type=client_credential&appid=" + appid + "&secret=" + secret, null),
-				AccessTokenModel.class);
-		if (StringUtils.isEmpty(accessTokenModel.getAccess_token())) {
-			return null;
-		} else {
-			accessToken = accessTokenModel.getAccess_token();
-		}
-		return accessToken;
-	}
-
-	/**
 	 * 处理微信发来的请求
 	 * 
 	 * @param request
@@ -116,9 +87,34 @@ public class CoreService {
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 			textMessage.setFuncFlag(0);
 
+			// 由于href属性值必须用双引号引起，这与字符串本身的双引号冲突，所以要转义
+			textMessage.setContent("欢迎访问<a href=\"http://blog.csdn.net/buptzhengchaojie\">北邮第五年-CJ</a>!");
+			// 将文本消息对象转换成xml字符串
+			respMessage = MessageUtil.textMessageToXml(textMessage);
+
 			// 文本消息
 			if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
-				respContent = "您发送的是文本消息！";
+				// 创建图文消息
+				NewsMessage newsMessage = new NewsMessage();
+				newsMessage.setToUserName(fromUserName);
+				newsMessage.setFromUserName(toUserName);
+				newsMessage.setCreateTime(new Date().getTime());
+				newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
+				newsMessage.setFuncFlag(0);
+				List<Article> articleList = new ArrayList<Article>();
+				Article article = new Article();
+				article.setTitle("Nexus私服搭建、配置、上传snapshot");
+				article.setDescription("这只是我的第一个图文消息，一条路走到黑那又怎样？");
+				article.setPicUrl("http://cjwithsn.applinzi.com/images/home.jpg");
+				article.setUrl("http://blog.csdn.net/buptzhengchaojie");
+				articleList.add(article);
+				// 设置图文消息个数
+				newsMessage.setArticleCount(articleList.size());
+				// 设置图文消息包含的图文集合
+				newsMessage.setArticles(articleList);
+				// 将图文消息对象转换成xml字符串
+				respMessage = MessageUtil.newsMessageToXml(newsMessage);
+				return respMessage;
 			}
 			// 图片消息
 			else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
